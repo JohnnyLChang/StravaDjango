@@ -1,0 +1,4 @@
+/logs/*
+*.pyc
+db.sqlite3
+logfile
