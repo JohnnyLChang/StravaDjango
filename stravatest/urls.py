@@ -18,6 +18,7 @@ from django.contrib import admin
 from stravatest.views import hello_world
 from django.core.urlresolvers import reverse_lazy
 from stravauth.views import StravaAuth
+from stravauth.views import StravaAthelete
 from views import HomeView
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^stravatest/$', hello_world),
     url(r'^$', HomeView.as_view(), name="home"),
+    url(r'^athlete/(?P<athlete_id>[0-9]+)/$', StravaAthelete.as_view(), name="athlete"),
     url(r'^stravalogin/', StravaAuth.as_view(url=reverse_lazy("home")), kwargs={"approval_prompt": "force"}, name="stravalogin"),
     url(r'^logout/$', 'django.contrib.auth.views.logout', kwargs={'next_page': '/'}, name="logout"),
 ]

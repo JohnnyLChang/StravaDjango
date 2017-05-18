@@ -100,7 +100,7 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler'
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'main_formatter',

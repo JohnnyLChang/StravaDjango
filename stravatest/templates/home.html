@@ -6,8 +6,10 @@
 	{% if user.id %}
 		<p>You are logged in as {{ user.username }}. 
 		Click <a href="{% url 'logout' %}">here</a> to Logout.</p>
+		Click <a href="{% url 'athlete' athlete_id=user.id%}">here</a> to read profile.</p>
+	{% else %}
+		<a href="{% url 'stravalogin' %}">Strava Login</a>
 	{% endif %}
-	<a href="{% url 'stravalogin' %}">Strava Login</a>
 	<br>
 	<a href="{% stravauth_url %}">Connect to Strava</a>
 </body>

@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 
-from stravauth.client import StravaClient
 from stravauth.models import StravaToken
 from stravalib import Client
 import logging
@@ -30,16 +29,19 @@ class StravaV3Backend(object):
         try:
             user = User.objects.get(id=athlete.id)
         except:
+            logger.error('User.objects.get failed')
             user = User(id=athlete.id)
         
         # Update username
-        logger.info('Update username: username')
+        logger.info('Update username: '+username)
         user.username = username
         user.save()  
         
         # Add the token 
-        (token_model, created) = StravaToken.objects.get_or_create(user=user)            
+        (token_model, created) = StravaToken.objects.get_or_create(user=user)
+        logger.info('Update token: '+access_token)         
         token_model.token = access_token
+        token_model.code = code
         token_model.save()
         
         logger.info(user)
@@ -51,4 +53,5 @@ class StravaV3Backend(object):
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
+            logger.error('user '+user_id+' does not exist')
             return None
