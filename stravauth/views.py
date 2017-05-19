@@ -60,7 +60,7 @@ class StravaAthelete(generic.View):
             logger.info(athlete.city)
             activities = client.get_activities(limit=10)
             for activity in activities:
-                logger.info(u"{0.name} {0.moving_time} {0.max_speed}".format(activity))
+                logger.info(u"{0.name} {0.moving_time} {0.suffer_score}".format(activity))
             context = {
             #        'latest_question_list': latest_question_list,
             }

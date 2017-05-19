@@ -13,6 +13,5 @@ class StravauthUrlNode(template.Node):
     def __init__(self):
         pass
     
-    def render(self, context):
-        
+    def render(self, context): 
         return get_stravauth_url()
